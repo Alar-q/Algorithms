@@ -1,3 +1,5 @@
+package framework;
+
 public class cammon_factor {
     //Расчитывает самый большой делитель для расчета соотношения сторон
     public static float common_factor(float width, float height){
