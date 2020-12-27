@@ -38,7 +38,7 @@ public class Number_of_pairs {
         /*solution with Brute force
         for(int j=1; j<=n; j++){
             for(int i=1; i<=j; i++){ //i дойдет до j.
-                if(j - i <= a)
+                if(j - i <= a) // i >= j - a - можно сразу понять до куда дойдет i
                     res++;
             }
         }
