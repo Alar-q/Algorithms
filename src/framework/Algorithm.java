@@ -1,8 +1,12 @@
 package framework;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import static java.lang.Math.sqrt;
 
 public class Algorithm {
 
@@ -24,10 +28,8 @@ public class Algorithm {
         int tmp, leftMarker = leftBorder, rightMarker = rightBorder, pivot = arr[(leftMarker + rightMarker) / 2];
         do {
             //while (arr[leftMarker] < pivot) leftMarker++;//пытаемся найти большее чем середина знечение
-            for (; arr[leftMarker] < pivot; leftMarker++) {
-            }
-            for (; arr[rightMarker] > pivot; rightMarker--) {
-            }
+            for (; arr[leftMarker] < pivot; leftMarker++) { }
+            for (; arr[rightMarker] > pivot; rightMarker--) { }
             //while (arr[rightMarker] > pivot) rightMarker--;//пытаемся найти меньшее чем середина значение
             if (leftMarker <= rightMarker) {
                 if (leftMarker < rightMarker) {
@@ -57,5 +59,26 @@ public class Algorithm {
         return set1;
     }
 
+    public static List<Long> dividers(long n){
+        List<Long> list = new ArrayList<Long>();
+        for (long i = 1; i <= Math.sqrt(n); i++){
+            if (n%i == 0){
+                list.add(i);
+                if (n/i != i) list.add(n/i);
+            }
+        }
+        return list;
+    }
+    public static List<BigInteger> dividers(BigInteger n){
+        List<BigInteger> list = new ArrayList<BigInteger>();
+        for (BigInteger i = BigInteger.ONE; i.compareTo(n.sqrt())==-1; i = i.add(BigInteger.ONE)){
+            if (n.mod(i).compareTo(BigInteger.ZERO)==0){
+                list.add(i);
+                BigInteger div = n.divide(i);
+                if (div.compareTo(i)!=0) list.add(div);
+            }
+        }
+        return list;
+    }
 
 }
