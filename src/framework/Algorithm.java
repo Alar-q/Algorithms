@@ -81,4 +81,45 @@ public class Algorithm {
         return list;
     }
 
+
+    public static void round(double v){
+        v = (double) Math.round(v * 10000000d) / 10000000d;
+    }
+
+    public static double intersection_area(int r1, int r2, double d){
+        double angle1 = angle_rad_CosTheorem(r1, d, r2);
+
+        double chord_l = cos_theorem_c(r1, r1, 2*angle1); //Можно найти и через r2, angle2
+
+        double segment1 = circle_segment_area(r1, chord_l);
+        double segment2 = circle_segment_area(r2, chord_l);
+
+        return segment1 + segment2;
+    }
+
+    public static double circle_segment_area(double r, double l){
+        double h = Math.sqrt(Math.pow(r, 2) - Math.pow(l/2d, 2));
+        double s_tr1 = ( l *  h) / 2d;
+
+        double s_circle = circle_area(r);
+
+        double s_pizza = Math.toDegrees(angle_rad_CosTheorem(r, r, l)) * s_circle/360d;
+        return s_pizza - s_tr1;
+    }
+
+    public static double circle_area(double r){
+        return Math.PI * Math.pow(r, 2);
+    }
+
+    public static double cos_theorem_c(int a, int b, double rad){
+        return Math.sqrt(Math.pow(a,2) + Math.pow(b,2) - (2d*a*b*Math.cos(rad)) );
+    }
+
+    public static double angle_rad_CosTheorem(double a, double b, double c){
+        return Math.acos((Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2d * a * b) );
+    }
+
+    public static double vector2d_length(int x1, int y1, int x2, int y2){
+        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+    }
 }

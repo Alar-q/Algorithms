@@ -32,12 +32,13 @@ public class Aolimp{
 
     void run() {
         try (Scanner in = new Scanner(System.in); PrintWriter out = new PrintWriter(System.out)) {
+            out.println("aaaaaa");
             solve(in, out);
         }
     }
 
     void solve(Scanner in, PrintWriter out) {
-        int sum = in.nextInt();
+        int sum = 1;//in.nextInt();
         int numOfIter = 0;
         int prev = -1;
         int leng = 4;

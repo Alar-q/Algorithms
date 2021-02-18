@@ -1,40 +1,13 @@
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt() - 1;
+        Main main = new Main();
+        double r1 = 6d, angle1 = Math.toRadians(60);
+        double chord_l = main.cos_theorem_c(r1, r1, 60); //Можно найти и через r2, angle2
+        System.out.println(chord_l);
+    }
 
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = in.nextInt();
-        }
-
-        List<Integer> dividers = new ArrayList<Integer>();
-        for (int i = 1; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                dividers.add(i);
-                if (n / i != i) dividers.add(n / i);
-            }
-        }
-
-        Collections.sort(dividers);
-
-        for (int k = 0; k < dividers.size(); k++) {
-            int p = dividers.get(k);
-
-            boolean good = true;
-            for(int i=p; i<n; i++){
-                if(arr[i]!=arr[i-p]){
-                    good = false;
-                    break;
-                }
-            }
-            if(good){
-                System.out.println(p);
-                break;
-            }
-        }
+    private double cos_theorem_c(double a, double b, double angle_360){
+        return Math.sqrt(Math.pow(a,2) + Math.pow(b,2) - (2d*a*b*Math.cos(Math.toRadians(angle_360))) );
     }
 }
