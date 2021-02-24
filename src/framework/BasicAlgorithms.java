@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static java.lang.Math.sqrt;
 
-public class Algorithm {
+public class BasicAlgorithms {
 
     public static void selection_sort(int[] arr){
         for(int i=0; i < arr.length; i++) {
@@ -121,5 +121,23 @@ public class Algorithm {
 
     public static double vector2d_length(int x1, int y1, int x2, int y2){
         return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+    }
+
+    public static String decimal2binary(int decimal){
+        int n = decimal;
+        String binary = "";
+        for(; n!=0; n/=2) {
+            binary += n % 2;
+        }
+        return new StringBuilder(binary).reverse().toString();
+    }
+
+    public static int binary2decimal(String binary){
+        char[] c = binary.toCharArray();
+        int r = 0, l = c.length;
+        for(int i=0; i<l; i++) {
+            r += (c[i] - '0') * Math.pow(2, l - 1 - i);
+        }
+        return r;
     }
 }
