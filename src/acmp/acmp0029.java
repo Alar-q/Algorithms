@@ -1,9 +1,10 @@
+package acmp;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class Main {
+public class acmp0029 {
     public static void main(String[] args) {
-        Main m = new Main();
+        acmp0029 m = new acmp0029();
         m.solve();
     }
     private void solve() {
