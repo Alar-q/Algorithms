@@ -23,7 +23,7 @@ public class Snake {
         }
 
         for(int i = arr.length-1, n= arr.length*arr[0].length; i>0; i--)
-            if(i%2!=0) {//как то эту штуку надо понять, а так на четных разиерах все ок
+            if(i%2!=0) {//как то эту штуку надо понять, а так на четных размерах все ок
                 for (int j = arr.length - 1; j >= i; j--, n--)
                     arr[j][i + (arr.length - 1 - j)] = n;
             }else
