@@ -9,7 +9,6 @@ public class acmp0029 {
     }
     private void solve() {
         Scanner in = new Scanner(System.in);
-
         int n = in.nextInt();
         if(n<2){
             System.out.println(0);;

@@ -1,38 +1,39 @@
-
 import java.util.*;
 
 public class Main {
+    static int a;
     public static void main(String[] args) {
-        Main m = new Main();
-        m.solve();
-    }
-    private void solve() {
         Scanner in = new Scanner(System.in);
 
         int n = in.nextInt();
-        if(n<2){
-            System.out.println(0);;
-        }else {
-            long[] hs = new long[n];
-            long[] best = new long[n];
-            hs[0] = in.nextLong();
-            hs[1] = in.nextLong();
-            best[0] = 0l; //энергия чтобы встать на 1-платформа
-            best[1] = for1(hs[0], hs[1]); //до 2-платформы можно добраться только через первую
+        int[] arr = new int[n];
 
-            for (int i = 2; i < n; i++) {
-                hs[i] = in.nextLong();
-                best[i] = Math.min(for1(hs[i], hs[i - 1]) + best[i - 1], for2(hs[i], hs[i - 2]) + best[i - 2]);
-            }
+        for(int i=0; i<n; i++)
+            arr[i]=in.nextInt();
 
-            System.out.println(best[n - 1]);
+        int res = res_minimax(arr, true, 0, 0, n-1);
+        System.out.println(res == 0 ? 0 : (res > 0 ? 1 : 2));
+    }
+
+    private static int res_minimax(int[] arr, boolean first, int res, int leftBorder, int rightBorder){
+        if(rightBorder-leftBorder==0) {
+            a = res + arr[leftBorder] * plusMinus(first);
         }
+        else {
+            int outcome1 = res_minimax(arr, !first, res + arr[leftBorder] * plusMinus(first), leftBorder + 1, rightBorder),
+                    outcome2 = res_minimax(arr, !first, res + arr[rightBorder] * plusMinus(first), leftBorder, rightBorder - 1);
+            if (first) {
+                a = Math.max(outcome1, outcome2);
+            } else {
+                a = Math.min(outcome1, outcome2);
+            }
+        }
+        return a;
+    }
+    private static int plusMinus(boolean first){
+        if(first)
+            return 1;
+        else  return -1;
+    }
 
-    }
-    private long for1(long h1, long h2){
-        return Math.abs(h1-h2);
-    }
-    private long for2(long h1, long h2){
-        return Math.abs(3 * Math.abs(h1-h2));
-    }
 }
